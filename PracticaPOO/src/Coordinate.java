@@ -24,4 +24,8 @@ public class Coordinate {
          public void setCol(int col) {
             this.col = col;
         }
+
+        public static boolean outOfBounds(int column){
+            return column<0 || column>=COLS;
+        }
 }

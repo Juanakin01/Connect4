@@ -6,28 +6,41 @@ class Board {
         this.reset();
     }
 
-    void reset() {
+    private void reset() {
         for (int i = 0; i < Coordinate.ROWS; i++) {
             for (int j = 0; j < Coordinate.COLS; j++) {
                 this.colors[i][j] = Color.NULL;
             }
         }
     }
-//While o for?
-    public void putToken(int column, Color color) {
-        boolean placed = false;
-        if (this.colors[Coordinate.ROWS - 1][column].isNull()) {
-            for (int i = 0; i <= Coordinate.ROWS - 1; i++) {
-                if (!placed && this.colors[i][column].isNull()) {
-                    this.colors[i][column] = color;
-                    placed = true;
-                }
-            }
-        } else {
-            //ERROR
+
+
+    /*public void putToken(int column, Color color) {
+        int avaliableRow=0;
+        while (!this.colors[avaliableRow][column].isNull()){
+            avaliableRow++;
         }
+        this.colors[avaliableRow][column] = color;
+        this.showBoard();
+    }*/
+
+    private void setColors(Coordinate coordinate,Color color) {
+        this.colors[coordinate.getPosRow()][coordinate.getPosCol()]=color;
+    }
+
+    public void putToken(int column, Color color) {
+        Coordinate coordinate=new Coordinate(0,column);
+        while (positionFull(coordinate)){
+            coordinate.setRow(coordinate.getPosRow()+1);
+        }
+        setColors(coordinate,color);
         this.showBoard();
     }
+
+    private boolean positionFull(Coordinate coordinate){
+        return colors[coordinate.getPosRow()][coordinate.getPosCol()]!=Color.NULL;
+    }
+
 
     public void showBoard() {
         for (int i = Coordinate.ROWS-1; i >= 0; i--) {
@@ -42,15 +55,19 @@ class Board {
         }
         System.out.println();
     }
-//NUEVO
+
+    public boolean isColumnFree(int column){
+        return this.colors[Coordinate.ROWS-1][column].isNull();
+    }
+
     public boolean isFull() {
         int acumColumn = 0;
-        for(int i=0; i<Coordinate.COLS-1; i++){
-            if(!this.colors[Coordinate.ROWS-1][i].isNull()){
+        for(int i=0; i<Coordinate.COLS; i++){
+            if(!isColumnFree(i)){
                 acumColumn += 1;
             }
         }
-        return acumColumn == Coordinate.COLS-1;
+        return acumColumn == Coordinate.COLS;
     };
 
 }
