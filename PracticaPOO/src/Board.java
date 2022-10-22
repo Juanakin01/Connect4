@@ -6,7 +6,7 @@ class Board {
         this.reset();
     }
 
-    private void reset() {
+    public void reset() {
         for (int i = 0; i < Coordinate.ROWS; i++) {
             for (int j = 0; j < Coordinate.COLS; j++) {
                 this.colors[i][j] = Color.NULL;

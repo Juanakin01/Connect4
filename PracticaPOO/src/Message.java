@@ -1,7 +1,8 @@
 
 enum Message {
     TITLE("--- CONECT4 ---"),
-    HORIZONTAL_LINE("---------------------------------------------------------");
+    HORIZONTAL_LINE("---------------------------------------------------------"),
+    CONTINUE("Do you want to continue");
 
     private String message;
 
