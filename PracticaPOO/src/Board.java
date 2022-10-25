@@ -14,16 +14,6 @@ class Board {
         }
     }
 
-
-    /*public void putToken(int column, Color color) {
-        int avaliableRow=0;
-        while (!this.colors[avaliableRow][column].isNull()){
-            avaliableRow++;
-        }
-        this.colors[avaliableRow][column] = color;
-        this.showBoard();
-    }*/
-
     private void setColors(Coordinate coordinate,Color color) {
         this.colors[coordinate.getPosRow()][coordinate.getPosCol()]=color;
     }

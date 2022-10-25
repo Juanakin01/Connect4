@@ -14,21 +14,22 @@ class Player {
 
     public void play() {
         int column;
+        Coordinate coordinate = new Coordinate(0,0);
         Error error;
         do {
-            column = Console.getInstance().readInt("Introduce column:");
-            error=this.getPlayError(column);
+            coordinate.setCol(Console.getInstance().readInt("Introduce column:"));
+            error=this.getPlayError(coordinate);
         }while(!error.isNull());
-        board.putToken(column, this.color);
+        board.putToken(coordinate.getPosCol(), this.color);
     }
 
-    private Error getPlayError(int column) {
+    private Error getPlayError(Coordinate coordinate) {
 
         Error error = Error.NULL;
-        if (Coordinate.outOfBounds(column)) {
+        if (Coordinate.outOfBounds(coordinate)) {
             error = Error.OUT_OF_BOUNDS;
         }
-        else if (!this.board.isColumnFree(column)) {
+        else if (!this.board.isColumnFree(coordinate.getPosCol())) {
             error = Error.COLUMN_FULL;
         }
         error.writeln();

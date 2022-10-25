@@ -25,7 +25,10 @@ public class Coordinate {
             this.col = col;
         }
 
-        public static boolean outOfBounds(int column){
-            return column<0 || column>=COLS;
+        public static boolean outOfBounds(Coordinate coordinate){
+            return coordinate.getPosCol()<0 ||
+                    coordinate.getPosCol()>=COLS ||
+                    coordinate.getPosRow()<0 ||
+                    coordinate.getPosRow()>=ROWS;
         }
 }
